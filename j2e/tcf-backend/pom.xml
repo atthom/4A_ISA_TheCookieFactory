@@ -10,34 +10,26 @@
     <name>ISA :: The Cookie Factory :: J2E Backend</name>
 
     <properties>
+        <!-- General Properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <versions.maven.compiler>3.6.1</versions.maven.compiler>
+        <versions.json>20160810</versions.json>
+        <versions.java>1.8</versions.java>
+        <!-- J2E 7.x technological stack -->
         <versions.javaee>7.0-1</versions.javaee>
         <versions.openejb>7.0.2</versions.openejb>
         <versions.tomee>7.0.2</versions.tomee>
         <versions.openjpa>2.4.1</versions.openjpa>
         <versions.myface>2.2.10</versions.myface>
-        <versions.json>20160810</versions.json>
+        <!-- Testing dependencies -->
+        <versions.maven.surefire>2.19.1</versions.maven.surefire>
+        <versions.junit>4.12</versions.junit>
+        <versions.mockito>1.10.19</versions.mockito>
+        <versions.cukespace>1.6.5</versions.cukespace>
         <versions.arquillian.junit>1.1.12.Final</versions.arquillian.junit>
         <versions.arquilian.jta>1.0.3.Final</versions.arquilian.jta>
         <versions.shrinkwrap>2.2.6</versions.shrinkwrap>
-        <versions.junit>4.12</versions.junit>
-        <versions.mockito>1.10.19</versions.mockito>
-        <versions.maven.surefire>2.19.1</versions.maven.surefire>
-        <versions.maven.compiler>3.6.1</versions.maven.compiler>
-        <versions.java>1.8</versions.java>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.0.3.Final</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -103,6 +95,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.github.cukespace</groupId>
+            <artifactId>cukespace-core</artifactId>
+            <version>${versions.cukespace}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
             <version>${versions.arquillian.junit}</version>
@@ -116,13 +114,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.extension</groupId>
-            <artifactId>arquillian-transaction-jta</artifactId>
-            <version>${versions.arquilian.jta}</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Application server: Tomee (tests only) -->
-        <dependency>
             <groupId>org.apache.tomee</groupId>
             <artifactId>arquillian-tomee-embedded</artifactId>
             <version>${versions.tomee}</version>
@@ -135,7 +126,25 @@
         <finalName>tcf-backend</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
-
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+                <version>${versions.openjpa}</version>
+                <configuration>
+                    <includes>**/entities/*.class</includes>
+                    <addDefaultConstructor>true</addDefaultConstructor>
+                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enhancer</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -146,6 +155,7 @@
                     <reuseForks>false</reuseForks>
                     <excludes>
                         <exclude>**/PaymentIntegrationTest.java</exclude>
+                        <exclude>features/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
