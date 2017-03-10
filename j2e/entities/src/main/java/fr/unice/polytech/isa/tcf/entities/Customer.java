@@ -23,10 +23,10 @@ public class Customer implements Serializable {
 	private String creditCard;
 
 	@OneToMany(cascade = {CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.LAZY, mappedBy = "customer")
-	private Set<Order> orders = new HashSet<>();
+	private Set<fr.unice.polytech.isa.tcf.entities.Order> orders = new HashSet<>();
 
 	@ElementCollection
-	private Set<Item> cart = new HashSet<>();
+	private Set<fr.unice.polytech.isa.tcf.entities.Item> cart = new HashSet<>();
 
 	public Customer() {
 	    // Necessary for JPA instantiation process
@@ -51,11 +51,11 @@ public class Customer implements Serializable {
 	public String getCreditCard() { return creditCard; }
 	public void setCreditCard(String creditCard) { this.creditCard = creditCard; }
 
-	public void add(Order o) { this.orders.add(o); }
-	public Set<Order> getOrders() { return orders; }
+	public void add(fr.unice.polytech.isa.tcf.entities.Order o) { this.orders.add(o); }
+	public Set<fr.unice.polytech.isa.tcf.entities.Order> getOrders() { return orders; }
 
-	public void setCart(Set<Item> c) { this.cart = c; }
-	public Set<Item> getCart() { return cart; }
+	public void setCart(Set<fr.unice.polytech.isa.tcf.entities.Item> c) { this.cart = c; }
+	public Set<fr.unice.polytech.isa.tcf.entities.Item> getCart() { return cart; }
 
 
 
