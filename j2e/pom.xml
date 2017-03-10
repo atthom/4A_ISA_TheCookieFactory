@@ -23,6 +23,9 @@
             entities
         </module>
         <module>
+            kitchen
+        </module>
+        <module>
             tcf-backend
         </module>
     </modules>
