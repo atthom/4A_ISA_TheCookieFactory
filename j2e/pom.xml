@@ -23,10 +23,28 @@
             entities
         </module>
         <module>
+            catalogue
+        </module>
+        <module>
+            customer-registry
+        </module>
+        <module>
+            customer-care-service
+        </module>
+        <module>
             kitchen
         </module>
         <module>
-            tcf-backend
+            bank-api
+        </module>
+        <module>
+            cashier
+        </module>
+        <module>
+            cart-web-service
+        </module>
+        <module>
+            tcf-test
         </module>
     </modules>
 
