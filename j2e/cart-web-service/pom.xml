@@ -23,6 +23,19 @@
         <versions.tomee>7.0.2</versions.tomee>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>cd19db50b73e-releases</name>
+            <url>http://ns3007451.ip-5-135-154.eu/artifactory/j2e</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>cd19db50b73e-snapshots</name>
+            <url>http://ns3007451.ip-5-135-154.eu/artifactory/j2e</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>fr.unice.polytech.isa.tcf</groupId>

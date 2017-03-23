@@ -30,10 +30,33 @@
         <versions.shrinkwrap>2.2.6</versions.shrinkwrap>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>cd19db50b73e-releases</name>
+            <url>http://ns3007451.ip-5-135-154.eu/artifactory/j2e</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>cd19db50b73e-snapshots</name>
+            <url>http://ns3007451.ip-5-135-154.eu/artifactory/j2e</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>fr.unice.polytech.isa.tcf</groupId>
-            <artifactId>cart-web-service</artifactId>
+            <artifactId>cashier</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.unice.polytech.isa.tcf</groupId>
+            <artifactId>catalogue</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.unice.polytech.isa.tcf</groupId>
+            <artifactId>customer-registry</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
