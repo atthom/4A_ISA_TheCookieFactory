@@ -1,6 +1,9 @@
+node {
+  def mavenHome = tool name: 'Maven'
+  env.PATH = "${mavenHome}/bin:${env.PATH}"
+}
+
 pipeline {
-def mvnHome = tool name: "Maven"
-    env.PATH = "${mvnHome}/bin:${env.PATH}"
   agent any
   stages {
     stage('Build') {
