@@ -14,15 +14,17 @@ pipeline {
 
         sh 'cd j2e/bank-api && mvn clean install'
         //sh 'mvn clean package'
-        sh 'cd j2e/cart-web-service && mvn clean install'
 
         sh 'cd j2e/cashier && mvn clean install'
 
         sh 'cd j2e/catalogue && mvn clean install'
 
+        sh 'cd j2e/customer-registry && mvn clean install'
+
+        sh 'cd j2e/cart-web-service && mvn clean install'
+
         sh 'cd j2e/customer-care-service && mvn clean install'
         
-        sh 'cd j2e/customer-registry && mvn clean install'
         
         sh 'cd j2e/kitchen && mvn clean install'
 
