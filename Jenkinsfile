@@ -9,9 +9,9 @@ pipeline {
     stage('Build') {
       steps {
         echo 'hello'
-        sh 'cd j2e'
-        sh 'cd bank-api'
-        sh 'mvn clean package'
+        //sh 'cd j2e'
+        sh 'cd j2e/bank-api && mvn clean package'
+        //sh 'mvn clean package'
         sh 'cd ../cart-web-service'
         sh 'mvn clean package'
         sh 'cd ../cashier'
@@ -26,7 +26,7 @@ pipeline {
         sh 'mvn clean package'
         sh 'cd ../kitchen'
         sh 'mvn clean package'
-        sh 'cd ../tcf-test'
+        sh 'cd ..tcf-test'
         sh 'mvn clean package'
    //     sh 'cd j2e && mvn clean package'
    //     sh 'mvn -f j2e\bank-api\pom.xml clean package'
