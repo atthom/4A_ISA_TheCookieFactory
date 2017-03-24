@@ -14,21 +14,19 @@ pipeline {
 
         sh 'cd j2e/bank-api && mvn clean install'
         //sh 'mvn clean package'
-        sh 'cd ../cart-web-service'
-        sh 'mvn clean package'
-        sh 'cd ../cashier'
-        sh 'mvn clean package'
-        sh 'cd ../catalogue'
-        sh 'mvn clean package'
-        sh 'cd ../customer-care-service'
-        sh 'mvn clean package'
-        sh 'cd ../customer-registry'
-        sh 'mvn clean package'
+        sh 'cd j2e/cart-web-service && mvn clean install'
+
+        sh 'cd j2e/cashier && mvn clean install'
+
+        sh 'cd j2e/catalogue && mvn clean install'
+
+        sh 'cd j2e/customer-care-service && mvn clean install'
         
-        sh 'cd ../kitchen'
-        sh 'mvn clean package'
-        sh 'cd ..tcf-test'
-        sh 'mvn clean package'
+        sh 'cd j2e/customer-registry && mvn clean install'
+        
+        sh 'cd j2e/kitchen && mvn clean install'
+
+        sh 'cd j2e/tcf-test && mvn clean install'
    //     sh 'cd j2e && mvn clean package'
    //     sh 'mvn -f j2e\bank-api\pom.xml clean package'
    //     sh 'mvn -f j2e\cart-web-service\pom.xml clean package'
