@@ -10,9 +10,9 @@ pipeline {
       steps {
         echo 'hello'
         //sh 'cd j2e'
-        sh 'cd j2e/entities && mvn clean package'
+        sh 'cd j2e/entities && mvn clean install'
 
-        sh 'cd j2e/bank-api && mvn clean package'
+        sh 'cd j2e/bank-api && mvn clean install'
         //sh 'mvn clean package'
         sh 'cd ../cart-web-service'
         sh 'mvn clean package'
