@@ -10,6 +10,8 @@ pipeline {
       steps {
         echo 'hello'
         //sh 'cd j2e'
+        sh 'cd j2e/entities && mvn clean package'
+
         sh 'cd j2e/bank-api && mvn clean package'
         //sh 'mvn clean package'
         sh 'cd ../cart-web-service'
@@ -22,8 +24,7 @@ pipeline {
         sh 'mvn clean package'
         sh 'cd ../customer-registry'
         sh 'mvn clean package'
-        sh 'cd ../entities'
-        sh 'mvn clean package'
+        
         sh 'cd ../kitchen'
         sh 'mvn clean package'
         sh 'cd ..tcf-test'
