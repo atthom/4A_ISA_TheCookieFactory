@@ -8,43 +8,51 @@ pipeline {
   stages {
     stage('Build Entites') {
       steps {
-        sh 'cd j2e/entities && mvn clean install'     
+          sh 'cd j2e && mvn install -pl entities -am'    
+   //     sh 'cd j2e/entities && mvn clean install'     
    //     sh 'cd j2e && mvn clean package'       
       }
     }
     stage('Build Bank-API') {
       steps {
-        sh 'cd j2e/bank-api && mvn clean install'
+          sh 'cd j2e && mvn install -pl bank-api -am'    
+        //sh 'cd j2e/bank-api && mvn clean install'
       }
     }
     stage('Build Kitchen') {
       steps {
-        sh 'cd j2e/kitchen && mvn clean install'
+          sh 'cd j2e && mvn install -pl kitchen -am'    
+        //sh 'cd j2e/kitchen && mvn clean install'
       }
     }
     stage('Build Cashier') {
       steps {
-        sh 'cd j2e/cashier && mvn clean install'
+          sh 'cd j2e && mvn install -pl cashier -am'    
+        //sh 'cd j2e/cashier && mvn clean install'
       }
     }
     stage('Build Catalogue') {
       steps {
-        sh 'cd j2e/catalogue && mvn clean install'
+          sh 'cd j2e && mvn install -pl catalogue -am'    
+        //sh 'cd j2e/catalogue && mvn clean install'
       }
     }
     stage('Build Cart-web-service') {
       steps {
-        sh 'cd j2e/cart-web-service && mvn clean install'
+          sh 'cd j2e && mvn install -pl cart-web-service -am'    
+      //  sh 'cd j2e/cart-web-service && mvn clean install'
       }
     }
     stage('Build Customer-care-service') {
       steps {
-        sh 'cd j2e/customer-care-service && mvn clean install'
+          sh 'cd j2e && mvn install -pl customer-care-service -am'    
+        //sh 'cd j2e/customer-care-service && mvn clean install'
       }
     }
     stage('Run Tests') {
       steps {
-        sh 'cd j2e/tcf-test && mvn clean install'
+          sh 'cd j2e && mvn install -pl tcf-test -am'    
+        //sh 'cd j2e/tcf-test && mvn clean install'
       }
     }
    
