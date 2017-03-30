@@ -1,61 +1,57 @@
-node {
-  def mavenHome = tool name: 'Maven'
-  env.PATH = "${mavenHome}/bin:${env.PATH}"
-}
-
 pipeline {
   agent any
   stages {
     stage('Build Entites') {
       steps {
-          sh 'cd j2e && mvn install -pl entities'    
-   //     sh 'cd j2e/entities && mvn clean install'     
-   //     sh 'cd j2e && mvn clean package'       
+        sh 'cd j2e && mvn install -pl entities'
       }
     }
     stage('Build Bank-API') {
       steps {
-          sh 'cd j2e && mvn install -pl bank-api'    
-        //sh 'cd j2e/bank-api && mvn clean install'
-      }
-    }
-    stage('Build Kitchen') {
-      steps {
-          sh 'cd j2e && mvn install -pl kitchen'    
-        //sh 'cd j2e/kitchen && mvn clean install'
+        parallel(
+          "Build Bank-API": {
+            sh 'cd j2e && mvn install -pl bank-api'
+            
+          },
+          "Build Kitchen": {
+            sh 'cd j2e && mvn install -pl kitchen'
+            
+          },
+          "Customer Registery": {
+            sh 'cd j2e && mvn install -pl customer-registry'
+            
+          },
+          "Catalogue": {
+            sh 'cd j2e && mvn install -pl catalogue'
+            
+          }
+        )
       }
     }
     stage('Build Cashier') {
       steps {
-          sh 'cd j2e && mvn install -pl cashier'    
-        //sh 'cd j2e/cashier && mvn clean install'
-      }
-    }
-    stage('Build Catalogue') {
-      steps {
-          sh 'cd j2e && mvn install -pl catalogue'    
-        //sh 'cd j2e/catalogue && mvn clean install'
+        parallel(
+          "Build Cashier": {
+            sh 'cd j2e && mvn install -pl cashier'
+            
+          },
+          "Customer-care-service": {
+            sh 'cd j2e && mvn install -pl customer-care-service'
+            
+          }
+        )
       }
     }
     stage('Build Cart-web-service') {
       steps {
-          sh 'cd j2e && mvn install -pl cart-web-service'    
-      //  sh 'cd j2e/cart-web-service && mvn clean install'
-      }
-    }
-    stage('Build Customer-care-service') {
-      steps {
-          sh 'cd j2e && mvn install -pl customer-care-service'    
-        //sh 'cd j2e/customer-care-service && mvn clean install'
+        sh 'cd j2e && mvn install -pl cart-web-service'
       }
     }
     stage('Run Tests') {
       steps {
-          sh 'cd j2e && mvn install -pl tcf-test'    
-        //sh 'cd j2e/tcf-test && mvn clean install'
+        sh 'cd j2e && mvn install -pl tcf-test'
       }
     }
-   
     stage('Deploy') {
       steps {
         echo 'deploying'
