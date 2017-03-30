@@ -8,7 +8,8 @@ pipeline {
   stages {
     stage('Build Entites') {
       steps {
-        sh 'cd j2e/entities && mvn clean install'     
+          sh 'mvn install -pl entities -am'    
+   //     sh 'cd j2e/entities && mvn clean install'     
    //     sh 'cd j2e && mvn clean package'       
       }
     }
