@@ -48,6 +48,23 @@
         </module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://ns3007451.ip-5-135-154.eu/artifactory/j2e</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <url>http://ns3007451.ip-5-135-154.eu/artifactory/j2e</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>central</id>
