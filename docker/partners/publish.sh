@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker push petitroll/tcf-ext
+docker push krrt/tcf-ext
